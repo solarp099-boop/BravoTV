@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f0f1a" />
+  <title>Bravo TV | Descarga Oficial APK</title>
+  <meta name="description" content="Sitio oficial de Bravo TV para descargar APKs y ver capturas de pantalla, con diseño moderno, simple y optimizado para Android." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <style>
+    :root{
+      --bg:#0f0f1a;
+      --bg2:#151728;
+      --bg3:#1a1a2e;
+      --card:#161827;
+      --border:#2d2d44;
+      --text:#ffffff;
+      --muted:#94a3b8;
+      --primary:#91539f;
+      --secondary:#91539f;
+      --shadow:0 18px 48px rgba(0,0,0,.35);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1180px;
+      --t:260ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(124,58,237,.18), transparent 24%),
+        radial-gradient(circle at 85% 15%, rgba(6,182,212,.12), transparent 20%),
+        linear-gradient(180deg, #0f0f1a 0%, #0d1020 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      border:0; cursor:pointer; border-radius:999px; padding:14px 18px;
+      font-weight:800; transition:transform var(--t), opacity var(--t), box-shadow var(--t), background var(--t);
+      color:#fff;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn:active{transform:translateY(0)}
+    .btn-primary{background:linear-gradient(135deg,var(--primary),var(--secondary)); box-shadow:0 14px 28px rgba(124,58,237,.25)}
+    .btn-dark{background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.08)}
+    .btn-soft{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08)}
+
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:999px;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+      color:#e5e7eb; font-weight:700;
+    }
+
+    .section{padding:72px 0}
+    .title-row{
+      display:flex; align-items:end; justify-content:space-between; gap:16px; flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+    .title-row h2{
+      margin:0; font-size:clamp(1.5rem, 2.4vw, 2.2rem); line-height:1.08;
+      letter-spacing:-.03em;
+    }
+    .title-row p{margin:0; color:var(--muted); max-width:720px; line-height:1.7}
+
+    /* Header */
+    .site-header{
+      position:fixed; inset:0 0 auto 0; z-index:50;
+      transition:background var(--t), box-shadow var(--t), border-color var(--t), backdrop-filter var(--t);
+      background:transparent;
+      border-bottom:1px solid transparent;
+    }
+    .site-header.scrolled{
+      background:rgba(10,12,22,.88);
+      box-shadow:0 10px 28px rgba(0,0,0,.22);
+      border-bottom-color:rgba(45,45,68,.8);
+      backdrop-filter:blur(12px);
+    }
+    .header-inner{
+      min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900; letter-spacing:-.03em}
+    .brand-badge{
+      width:42px; height:42px; border-radius:14px; display:grid; place-items:center;
+      background:linear-gradient(135deg,var(--primary),var(--secondary)); box-shadow:0 10px 24px rgba(124,58,237,.22)
+    }
+    .brand small{display:block; color:var(--muted); font-weight:600; font-size:.8rem; margin-top:2px}
+
+    .nav{display:flex; align-items:center; gap:8px}
+    .nav a{
+      padding:10px 14px; border-radius:999px; color:var(--muted); font-weight:700;
+      transition:background var(--t), color var(--t), transform var(--t)
+    }
+    .nav a:hover,.nav a.active{background:rgba(255,255,255,.08); color:#fff; transform:translateY(-1px)}
+
+    .header-actions{display:flex; align-items:center; gap:10px}
+    .icon-btn{
+      width:46px; height:46px; border-radius:999px; border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.06); color:#fff; cursor:pointer; display:grid; place-items:center;
+    }
+    .menu-btn{display:none}
+
+    /* Hero */
+    .hero{padding:124px 0 40px; position:relative; overflow:hidden}
+    .hero::before,.hero::after{
+      content:""; position:absolute; border-radius:50%; pointer-events:none; filter:blur(8px); opacity:.9;
+    }
+    .hero::before{width:360px;height:360px; left:-120px; top:20px; background:radial-gradient(circle, rgba(124,58,237,.28), transparent 60%)}
+    .hero::after{width:420px;height:420px; right:-140px; top:0; background:radial-gradient(circle, rgba(6,182,212,.16), transparent 60%)}
+
+    .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:24px; align-items:center; position:relative; z-index:1}
+    .eyebrow{display:inline-flex; gap:8px; align-items:center; padding:10px 14px; border-radius:999px; border:1px solid rgba(124,58,237,.25); background:rgba(124,58,237,.10); color:#eadcff; font-weight:800; margin-bottom:16px}
+    .hero h1{margin:0 0 14px; font-size:clamp(2.4rem, 5vw, 4.8rem); line-height:.95; letter-spacing:-.05em}
+    .gradient{background:linear-gradient(90deg,#91539f 0%, #91539f 35%, #91539f 70%, #91539f 100%); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .hero p{margin:0; color:var(--muted); line-height:1.8; max-width:62ch; font-size:1.02rem}
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:22px}
+
+    .hero-panel{
+      border-radius:30px; background:linear-gradient(180deg, rgba(26,26,46,.95), rgba(17,19,34,.95));
+      border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow); padding:20px; overflow:hidden;
+    }
+    .mock-phone{
+      border-radius:26px; background:linear-gradient(180deg, rgba(12,14,24,.98), rgba(20,22,37,.98));
+      border:1px solid rgba(255,255,255,.08); padding:16px; box-shadow:inset 0 1px 0 rgba(255,255,255,.04)
+    }
+    .mock-item{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:14px 0; border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .mock-item:last-child{border-bottom:0}
+    .mock-left{display:flex; align-items:center; gap:12px}
+    .mock-icon{
+      width:46px; height:46px; border-radius:14px; display:grid; place-items:center; color:#fff;
+      background:linear-gradient(135deg,var(--primary),var(--secondary))
+    }
+    .mock-title{font-weight:800}
+    .mock-sub{color:var(--muted); font-size:.92rem; margin-top:2px}
+    .mock-size{color:#d9f8ff; font-size:.9rem; background:rgba(6,182,212,.12); padding:8px 10px; border-radius:999px; border:1px solid rgba(6,182,212,.16)}
+
+    /* Screenshots section */
+    .shots-grid{
+      display:grid; grid-template-columns:1.15fr .85fr; gap:16px; align-items:stretch;
+    }
+    .shot-main-card, .shot-side-card, .panel{
+      background:linear-gradient(180deg, rgba(26,26,46,.94), rgba(18,20,35,.96));
+      border:1px solid rgba(255,255,255,.08); border-radius:28px; box-shadow:var(--shadow);
+    }
+    .shot-main-card{padding:18px}
+    .shot-main{
+      width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:22px; border:1px solid rgba(255,255,255,.08);
+      background:#090b14;
+    }
+    .shot-caption{display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; margin-top:12px}
+    .shot-caption p{margin:0; color:var(--muted); line-height:1.7}
+    .thumbs{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
+    .thumb{
+      border:1px solid rgba(255,255,255,.08); background:#111; border-radius:18px; overflow:hidden;
+      aspect-ratio:1/.8; cursor:pointer; opacity:.78; transition:opacity var(--t), transform var(--t), border-color var(--t)
+    }
+    .thumb.active{opacity:1; border-color:rgba(6,182,212,.55); transform:translateY(-2px)}
+    .thumb img{width:100%; height:100%; object-fit:cover}
+    .shot-side-card{padding:20px}
+    .mini-list{display:grid; gap:12px; margin-top:12px}
+    .mini-item{
+      display:flex; gap:12px; align-items:flex-start; padding:14px 14px; border-radius:18px;
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06)
+    }
+    .mini-item i{color:#91539f; margin-top:3px}
+    .mini-item strong{display:block; margin-bottom:2px}
+    .mini-item span{color:var(--muted); line-height:1.6}
+
+    /* Download block */
+    .download-card{
+      background:linear-gradient(180deg, rgba(26,26,46,.94), rgba(18,20,35,.96));
+      border:1px solid rgba(255,255,255,.08); border-radius:28px; box-shadow:var(--shadow); padding:22px;
+    }
+    .download-top{display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap}
+    .download-head{display:flex; align-items:flex-start; gap:14px}
+    .download-logo{
+      width:66px; height:66px; border-radius:20px; display:grid; place-items:center; flex:0 0 auto;
+      background:linear-gradient(135deg,var(--primary),var(--secondary)); box-shadow:0 16px 28px rgba(58, 237, 139, 0.22); font-size:1.5rem
+    }
+    .download-title{margin:0 0 6px; font-size:1.15rem; letter-spacing:-.02em}
+    .download-meta{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .chip{padding:7px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.07); color:#dbeafe; font-size:.86rem; font-weight:700}
+    .download-desc{color:var(--muted); line-height:1.75; margin:14px 0 0; max-width:80ch}
+    .download-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .download-actions .btn{padding:12px 16px; min-height:46px}
+    .variants{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .variant-btn{
+      border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.05); color:#fff; border-radius:999px;
+      padding:10px 13px; cursor:pointer; font-weight:800; transition:transform var(--t), background var(--t)
+    }
+    .variant-btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.09)}
+    .info-row{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:16px}
+    .mini{
+      padding:12px; border-radius:16px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06)
+    }
+    .mini span{display:block; color:var(--muted); font-size:.85rem; margin-bottom:4px}
+    .mini strong{font-size:.95rem}
+
+    /* About */
+    .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .panel{padding:20px}
+    .panel h3{margin:0 0 10px; font-size:1.3rem}
+    .panel p{margin:0; color:var(--muted); line-height:1.8}
+    .list{display:grid; gap:10px; margin-top:14px}
+    .list-item{
+      display:flex; gap:10px; align-items:flex-start; padding:12px 14px; border-radius:16px;
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06)
+    }
+    .list-item i{color:#91539f; margin-top:3px}
+
+    /* Footer */
+    footer{
+      padding:28px 0 34px; border-top:1px solid rgba(255,255,255,.08); margin-top:18px;
+      background:rgba(6,7,15,.22)
+    }
+    .footer-grid{display:grid; grid-template-columns:1.2fr .8fr .8fr; gap:16px}
+    .footer-grid h4{margin:0 0 10px}
+    .footer-grid p,.footer-grid a,.footer-grid li{color:var(--muted); line-height:1.8}
+    .footer-grid ul{list-style:none; padding:0; margin:0}
+    .socials{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .socials a{width:42px;height:42px;display:grid;place-items:center;border-radius:50%; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); color:#fff}
+    .bottom-row{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,.08); color:var(--muted)}
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center; padding:16px; z-index:80;
+      background:rgba(0,0,0,.65); backdrop-filter:blur(10px)
+    }
+    .modal.open{display:flex}
+    .modal-box{
+      width:min(820px,100%); max-height:90vh; overflow:auto; border-radius:28px; background:linear-gradient(180deg, rgba(26,26,46,.98), rgba(15,17,28,.98));
+      border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow); padding:20px; position:relative
+    }
+    .close-btn{position:absolute; right:16px; top:16px; width:42px; height:42px; border:0; border-radius:50%; background:rgba(255,255,255,.08); color:#fff; cursor:pointer}
+    .modal-head{display:flex; gap:14px; align-items:center; padding-right:48px}
+    .modal-head .download-logo{width:56px;height:56px;border-radius:18px}
+    .modal-body{color:var(--muted); line-height:1.8; margin-top:10px}
+
+    /* Reveal */
+    .reveal{opacity:0; transform:translateY(18px); transition:opacity .65s ease, transform .65s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .hero-grid,.shots-grid,.about-grid,.footer-grid{grid-template-columns:1fr}
+      .info-row{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width: 840px){
+      .nav{
+        position:fixed; left:16px; right:16px; top:86px; flex-direction:column; align-items:stretch; gap:8px;
+        padding:12px; border-radius:24px; background:rgba(10,12,22,.96); border:1px solid rgba(255,255,255,.08);
+        box-shadow:var(--shadow); transform:translateY(-10px); opacity:0; pointer-events:none; transition:opacity var(--t), transform var(--t)
+      }
+      .nav.open{opacity:1; transform:translateY(0); pointer-events:auto}
+      .nav a{width:100%}
+      .menu-btn{display:grid}
+      .info-row{grid-template-columns:1fr}
+      .thumbs{grid-template-columns:repeat(3,1fr)}
+      .hero{padding-top:112px}
+    }
+    @media (max-width: 560px){
+      .container{width:min(var(--max), calc(100% - 24px))}
+      .section{padding:58px 0}
+      .hero h1{font-size:clamp(2.1rem, 12vw, 3.4rem)}
+      .hero-actions .btn{width:100%}
+      .download-actions .btn{width:100%}
+      .thumbs{grid-template-columns:repeat(2,1fr)}
+      .header-inner{min-height:72px}
+      .brand small{font-size:.75rem}
+      .brand{min-width:0}
+    }
+
+    @media (max-width: 560px){
+      .container{width:min(var(--max), calc(100% - 24px))}
+      .section{padding:58px 0}
+      .hero h1{font-size:clamp(2.1rem, 12vw, 3.4rem)}
+      .hero-actions .btn{width:100%}
+      .download-actions .btn{width:100%}
+      .thumbs{grid-template-columns:repeat(2,1fr)}
+      .header-inner{min-height:72px}
+      .brand small{font-size:.75rem}
+      .brand{min-width:0}
+    }
+    
+    /* NUEVOS ESTILOS INTERACTIVOS PARA LAS VARIANTES APK */
+    .mock-item-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .mock-item-link:last-child {
+      margin-bottom: 0;
+    }
+    .mock-item.clickable {
+      transition: background var(--t), transform var(--t);
+      cursor: pointer;
+      padding: 14px 12px;
+      border-radius: 16px;
+    }
+    .mock-item.clickable:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-2px);
+    }
+    .mock-item.clickable:active {
+      transform: translateY(0);
+    }
+    
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Bravo TV inicio">
+        <div class="brand-badge"><i class="fa-solid fa-layer-group"></i></div>
+        <div>
+          <div>Bravo TV</div>
+          <small>Descarga oficial APK</small>
+        </div>
+      </a>
+
+      <nav class="nav" id="navMenu">
+        <a href="#inicio" class="nav-link active">Inicio</a>
+        <a href="#about" class="nav-link">Acerca de</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <h1><span class="gradient">Pagina oficial</span><br></h1>
+          <p>
+            Obtén la última versión oficial de Bravo TV de manera directa y segura. Disfruta de tus listas de canales en streaming con la máxima fluidez, sin publicidad invasiva y con un rendimiento optimizado para el motor de tu teléfono. Elige la versión ideal para tu dispositivo a la derecha y empieza a transmitir al instante.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary"  target="_blank" rel="noopener"><i class="fa-solid fa-download"></i>versión 1.0.0</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel reveal">
+          <div class="mock-phone">
+            
+            <a href="https://www.mediafire.com/file/01a10sm8au20x57/BravoTV-v8a.apk/file" target="_blank" rel="noopener" class="mock-item-link">
+              <div class="mock-item clickable">
+                <div class="mock-left">
+                  <div class="mock-icon"><i class="fa-brands fa-android"></i></div>
+                  <div>
+                    <div class="mock-title">app-arm64-v8a</div>
+                    <div class="mock-sub">Dispositivos modernos</div>
+                  </div>
+                </div>
+                <div class="mock-size">56 MB</div>
+              </div>
+            </a>
+
+            <a href="https://www.mediafire.com/file/alufsql3s1jnl73/BravoTV-v7a.apk/file" target="_blank" rel="noopener" class="mock-item-link">
+              <div class="mock-item clickable">
+                <div class="mock-left">
+                  <div class="mock-icon"><i class="fa-brands fa-android"></i></div>
+                  <div>
+                    <div class="mock-title">app-armeabi-v7a</div>
+                    <div class="mock-sub">Dispositivos gama baja</div>
+                  </div>
+                </div>
+                <div class="mock-size">44 MB</div>
+              </div>
+            </a>
+
+            <a href="https://www.mediafire.com/file/xab433ndc9jnc0h/BravoTv-x86_84.apk/file" target="_blank" rel="noopener" class="mock-item-link">
+              <div class="mock-item clickable">
+                <div class="mock-left">
+                  <div class="mock-icon"><i class="fa-brands fa-android"></i></div>
+                  <div>
+                    <div class="mock-title">app-x86_84</div>
+                    <div class="mock-sub">Compatible con emuladores</div>
+                  </div>
+                </div>
+                <div class="mock-size">62 MB</div>
+              </div>
+            </a>
+
+            <a href="https://www.mediafire.com/file/au37fgoxi1uwbx9/BravoTv-x86.apk/file" target="_blank" rel="noopener" class="mock-item-link">
+              <div class="mock-item clickable">
+                <div class="mock-left">
+                  <div class="mock-icon"><i class="fa-brands fa-android"></i></div>
+                  <div>
+                    <div class="mock-title">app-x86</div>
+                    <div class="mock-sub">Compatible con emuladores antiguos</div>
+                  </div>
+                </div>
+                <div class="mock-size">52 MB</div>
+              </div>
+            </a>
+
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <section class="section" id="screenshots">
+      <div class="container">
+    
+
+        <div class="shots-grid reveal">
+          <div class="shot-main-card">
+            <img class="shot-main" id="mainShot" src="https://img.sanishtech.com/u/4fa884045ecf9eb95d081601aedb5586.png" alt="Captura principal de Bravo TV">
+            <div class="shot-caption">
+              <span class="pill"><i class="fa-solid fa-image"></i> Screenshots</span>
+            </div>
+            <div class="thumbs" style="margin-top:14px">
+              <button class="thumb active" data-src="https://img.sanishtech.com/u/4fa884045ecf9eb95d081601aedb5586.png"><img src="https://img.sanishtech.com/u/4fa884045ecf9eb95d081601aedb5586.png" alt="Captura 1"></button>
+              <button class="thumb" data-src="https://img.sanishtech.com/u/cae5d33e8312d62b5d2c8d1a27e1a97d.png"><img src="https://img.sanishtech.com/u/cae5d33e8312d62b5d2c8d1a27e1a97d.png" alt="Captura 4"></button>
+              <button class="thumb" data-src="https://img.sanishtech.com/u/0c2878b71e58d961a026bca87d2e2c1c.png"><img src="https://img.sanishtech.com/u/0c2878b71e58d961a026bca87d2e2c1c.png" alt="Captura 3"></button>
+              <button class="thumb" data-src="https://img.sanishtech.com/u/84727ee31e772292ff624290b0cd608a.png"><img src="https://img.sanishtech.com/u/84727ee31e772292ff624290b0cd608a.png" alt="Captura 2"></button>
+            </div>
+          </div>
+
+          <aside class="shot-side-card">
+            <h3 style="margin:0 0 8px">¿Por qué elegir Bravo TV?</h3>
+            <p style="margin:0; color:var(--muted); line-height:1.8">Integración con LibVLC para que tus canales en streaming arranquen al instante y con total estabilidad.</p>
+            <div class="mini-list">
+              <div class="mini-item"><i class="fa-solid fa-check"></i><div><strong>Velocidad de carga</strong><span>Botón visible y fácil de tocar en móviles.</span></div></div>
+              <div class="mini-item"><i class="fa-solid fa-check"></i><div><strong>Consumo inteligente</strong><span>Una app ultra ligera que no satura el almacenamiento de tu teléfono.</span></div></div>
+              <div class="mini-item"><i class="fa-solid fa-check"></i><div><strong>Cero complicaciones</strong><span>Nada de listas solo con "bravo" lo tienes todo</span></div></div>
+              <div class="mini-item"><i class="fa-solid fa-check"></i><div><strong>Modo anti lag</strong><span>Mira tus canales sin cortes</span></div></div>
+
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="title-row reveal">
+          <div>
+            <h2>Acerca de Bravo TV</h2>
+            <p>El reproductor multimedia definitivo para tus listas de streaming en Android. Diseñado para ofrecer la máxima velocidad, estabilidad y un consumo mínimo de recursos.</p>
+          </div>
+        </div>
+
+        <div class="about-grid reveal">
+          <div class="panel">
+            <h3>Información general</h3>
+            <p><strong style="color:#fff">Nombre de la app:</strong> Bravo TV</p>
+            <p style="margin-top:10px"><strong style="color:#fff">Descripción:</strong> Bravo TV es un reproductor de listas IPTV (M3U8 y más) enfocado en el rendimiento puro. Desarrollada de forma nativa para Android, la aplicación elimina los tiempos de carga excesivos y los menús complicados, ofreciendo una experiencia de streaming directa, fluida y de alta calidad.</p>
+            <p style="margin-top:10px"><strong style="color:#fff">Características:</strong> Interfaz limpia sin añadidos innecesarios, motor de reproducción avanzado (LibVLC) para evitar cortes, carga instantánea de canales, optimización extrema del tamaño del APK y diseño intuitivo adaptado a cualquier pantalla móvil.</p>
+          </div>
+
+          <div class="panel">
+            <h3>Soporte y requisitos</h3>
+            <div class="list">
+              <div class="list-item"><i class="fa-solid fa-check"></i><div><strong>Requisitos del sistema</strong><br><span>Android 5.0 (Lollipop) o superior. Conexión a internet estable y menos de 70 MB de espacio libre para la instalación del APK optimizado.</span></div></div>
+              <div class="list-item"><i class="fa-solid fa-envelope"></i><div><strong>Contacto / soporte</strong><br><span>bravo_oficial.ac.</span></div></div>
+              <div class="list-item"><i class="fa-solid fa-circle-info"></i><div><strong>Enlaces sociales</strong><br><span>Proyecto independiente enfocado en el desarrollo de software libre de código malicioso y 100% seguro</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-text">© <span id="year"></span> Bravo TV. Todos los derechos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+
+
+  
+
+  <script>
+    const siteHeader = document.getElementById('siteHeader');
+    const navMenu = document.getElementById('navMenu');
+    const menuBtn = document.getElementById('menuBtn');
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+    const openInfo = document.getElementById('openInfo');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalVersion = document.getElementById('modalVersion');
+    const modalSize = document.getElementById('modalSize');
+    const modalDate = document.getElementById('modalDate');
+
+    function onScroll(){
+      siteHeader.classList.toggle('scrolled', window.scrollY > 8);
+    }
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+
+    menuBtn.addEventListener('click', () => navMenu.classList.toggle('open'));
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+        navMenu.classList.remove('open');
+      });
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Screenshot thumbs
+    const mainShot = document.getElementById('mainShot');
+    document.querySelectorAll('.thumb').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        mainShot.src = thumb.dataset.src;
+      });
+    });
+
+    // Variants
+    document.querySelectorAll('.variant-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        window.open(btn.dataset.url, '_blank', 'noopener');
+      });
+    });
+
+    // Modal
+    function openModal(){
+      modal.classList.add('open');
+    }
+    closeModal.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('open'); });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') modal.classList.remove('open'); });
+    openInfo.addEventListener('click', openModal);
+
+    // Populate modal text
+    modalTitle.textContent = 'Bravo TV';
+    modalDesc.textContent = 'Bravo TV es tu aplicación principal. Desde esta página el usuario solo ve la información básica, las capturas de pantalla y el botón de descarga oficial.';
+    modalVersion.textContent = 'v3.6.0';
+    modalSize.textContent = '31.8 MB';
+    modalDate.textContent = '11/05/2026';
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
